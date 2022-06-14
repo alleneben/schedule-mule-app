@@ -11,7 +11,7 @@ const JobCard = ({ Img }) => {
                 <p>Jennifer Pratt, 90 East Accra, Pothole Drive</p>
             </div>
         </div>
-        <Image src={Img} alt="Avatar" />
+        <Image src={Img} alt="Avatar" width={50} height={50} />
     </div>
 }
 
