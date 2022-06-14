@@ -1,4 +1,5 @@
 import styles from "./card.module.scss";
+import Image from 'next/image'
 
 const JobCard = ({ Img }) => {
 
@@ -10,7 +11,7 @@ const JobCard = ({ Img }) => {
                 <p>Jennifer Pratt, 90 East Accra, Pothole Drive</p>
             </div>
         </div>
-        <img src={Img} alt="Avatar" />
+        <Image src={Img} alt="Avatar" />
     </div>
 }
 

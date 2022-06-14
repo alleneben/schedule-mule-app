@@ -2,7 +2,7 @@ const InputField = ({type, name, placeholder, value, className}) => {
 
 
     return(
-        <input defaultValue={name} type={type} name={name} placeholder={placeholder} value={value} className={className}/>
+        <input defaultValue='Mule' type={type} name={name} placeholder={placeholder}  className={className}/>
     )
 }
 
