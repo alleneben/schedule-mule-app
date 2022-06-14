@@ -1,0 +1,119 @@
+@import "../../styles/mixins/_mixins";
+@import '../../styles/_variables.scss';
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    grid-gap: 5px;
+}
+
+.card {
+    position: relative;
+    background-color: #fff;
+    height: 400px;
+    font-weight: 700;
+    padding: 20px;
+    font-size: 12px;
+    border-radius: 3px;
+    overflow-x: auto;
+    margin: 10px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    
+    .cardHead{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        // padding-left: 1rem;
+        font-size: 1.2rem;
+        font-weight: 200;
+        i {
+            margin-right: 10px;
+            font-size: 15px;
+        }
+    }
+    .cardContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cardFooter {
+        position: absolute;
+        bottom: 20px;
+        left: 40%;
+        color: rgb(56 189 248);
+        // margin-top: 5px;
+    }
+
+    .itemsCenter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.jobCard {
+    @include flex-between-center();
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+
+    h1 {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    img {
+        height: 30px;
+        width: 30px;
+    }
+    .jobTime {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        span {
+            font-size: 0.6rem;
+            background-color: rgb(186 230 253);
+            color: $secondary;
+            text-align: center;
+            padding: 3px;
+            border-radius: 3px;
+        }
+    }
+    .jobDetail {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        .jobAddress {
+            line-height: 13px;
+            color: rgb(148 163 184);
+            font-weight: 400;
+        }
+    }
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {
+
+// }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 600px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .cards { grid-template-columns: repeat(3, 1fr); }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1400px) {
+    .cards { grid-template-columns: repeat(4, 1fr); }
+}
