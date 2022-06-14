@@ -15,3 +15,8 @@ body {
   width: 100%;
   /* overflow: hidden; */
 } 
+
+::placeholder {
+  color: #718096;
+  font-size: 12px;
+}
