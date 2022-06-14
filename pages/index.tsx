@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from "/styles/Login.module.scss";
+
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1 className={styles.danger}>
+        <h1 className='title'>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
