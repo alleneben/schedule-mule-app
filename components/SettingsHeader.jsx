@@ -26,7 +26,7 @@ const SettingsHeader = () => {
                 transition="box-shadow 0.2s"
                 bg={bg}
                 borderTop="6px solid"
-                borderTopColor="brand.400"
+                borderTopColor="#CBD5E0"
                 w="full"
                 overflowY="hidden"
             >
