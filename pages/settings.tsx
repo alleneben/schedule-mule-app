@@ -27,6 +27,7 @@ class CompanyDetails {
     }
 }
 
+// Data array for populating on the screen
 const data = [
     new CompanyDetails(
         "Company Profile",
