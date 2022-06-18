@@ -99,7 +99,6 @@ const Settings: NextPage = () => {
             <SimpleGrid columns={[1, 3, 4]} spacing={'3'} marginStart={'5'} marginEnd={5}>
                 {listCards}
             </SimpleGrid>
-
         </Slide>
     )
 }
