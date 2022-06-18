@@ -14,6 +14,8 @@ import bill from '../public/bill.png';
 import payout from '../public/payout.png';
 import referrals from '../public/referrals.png';
 
+
+// Detail components has all the list detail we are rendring on the screen
 class CompanyDetails {
     title: String;
     label: String;
@@ -85,6 +87,8 @@ const data = [
 ]
 
 
+// Our main setting screen..
+// Rendering of the list we have  with some special components
 const Settings: NextPage = () => {
     const listCards = data.map((data) =>
         <Card key={data.toString()} title={data.title} label={data.label} image={data.image} />
@@ -103,6 +107,8 @@ const Settings: NextPage = () => {
 
 export default Settings
 
+
+// props for our card component
 type CardProps = {
     title: any,
     label: any,
@@ -111,6 +117,8 @@ type CardProps = {
 }
 
 
+
+// Our card 
 const Card = ({ title, label, image, }: CardProps) => {
     return (
         <Container centerContent justifyContent='center' _hover={{ bg: '#ebedf0', borderRadius: 'sm' }} h='52' alignContent="center" alignItems={"center"} alignSelf="center">

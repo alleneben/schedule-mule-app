@@ -2,13 +2,12 @@ import '/styles/globals.css'
 import "/styles/util.scss";
 import type { AppProps } from 'next/app'
 
-// pages/_app.js
 import { ChakraProvider } from '@chakra-ui/react'
 
-// 1. Import the extendTheme function
+// Import the extendTheme function
 import { extendTheme } from '@chakra-ui/react'
 
-// 2. Extend the theme to include custom colors, fonts, etc
+// Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
     900: '#1a365d',
