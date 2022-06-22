@@ -7,6 +7,7 @@ import { IoMdNotifications } from 'react-icons/io';
 import { FiSettings } from 'react-icons/fi';
 import styles from "../styles/Dashboard.module.scss";
 import Img from "../public/avatar-ali.png";
+import Link from 'next/link';
 
 const Dashboard: NextPage = () => {
     return (
@@ -24,10 +25,12 @@ const Dashboard: NextPage = () => {
                     <FaUserAlt />
                     Customer
                 </div>
-                <div className={styles.menuItem}>
+               <Link href='/settings'>
+               <div className={styles.menuItem}>
                     <AiFillAppstore />
                     My Apps
                 </div>
+               </Link>
                 <div className={styles.menuItem}>
                     <FaRegMoneyBillAlt />
                     My Money
