@@ -1,76 +1,84 @@
-import type { NextPage } from 'next'
-import { FaUserAlt, FaRegMoneyBillAlt, FaCalendarCheck } from 'react-icons/fa';
-import { Cards, Card, CardHeader, CardContent, JobCard, Divider, CardFooter } from '../components';
-import { AiFillDashboard, AiFillSchedule, AiFillAppstore } from 'react-icons/ai';
+import { ReactNode } from 'react';
+import {
+    Box,
+    Flex,
+    useDisclosure,
+    Text,
+    Heading,
+    HStack,
+    Divider,
+    VStack,
+    Button,
+    Tag,
+    TagLabel,
+    Center,
+    Avatar,
+    SimpleGrid
 
-import { IoMdNotifications } from 'react-icons/io';
-import { FiSettings } from 'react-icons/fi';
-import styles from "../styles/Dashboard.module.scss";
-import Img from "../public/avatar-ali.png";
-import Link from 'next/link';
+} from '@chakra-ui/react';
 
-const Dashboard: NextPage = () => {
+import NavBar from '../components/dashboard/nav_bar';
+
+import { CardInfo, CardLead, GearCard } from '../components/dashboard/cards';
+import { CalendarIcon, SettingsIcon } from '@chakra-ui/icons';
+
+
+
+export default function Dashboard() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+
     return (
-        <><nav className={styles.navbar}>
-            <div className={styles.menuItems}>
-                <div className={styles.menuItem}>
-                    <AiFillDashboard />
-                    Dashboard
-                </div>
-                <div className={styles.menuItem}>
-                    <AiFillSchedule />
-                    Schedule
-                </div>
-                <div className={styles.menuItem}>
-                    <FaUserAlt />
-                    Customer
-                </div>
-               <Link href='/settings'>
-               <div className={styles.menuItem}>
-                    <AiFillAppstore />
-                    My Apps
-                </div>
-               </Link>
-                <div className={styles.menuItem}>
-                    <FaRegMoneyBillAlt />
-                    My Money
-                </div>
-            </div>
-            <div className={styles.menuItems}>
-                <button className={`${styles.btn} ${styles.btnPrimary}`}>+ New</button>
-                <button className={`${styles.btn} ${styles.btnSecondary}`}>Log out</button>
-                <div>
-                    <IoMdNotifications />
-                    <span className={styles.badge}>5</span>
-                </div>
-            </div>
-        </nav>
-            <main className={styles.container}>
-                <Cards>
-                    {
-                        [3, 4, 6, 5].map((card, key) => <Card key={key}>
-                            <CardHeader>
-                                <div><FaCalendarCheck /> Upcoming jobs</div>
-                                <div><FiSettings /></div>
-                            </CardHeader>
-                            <CardContent>
-                                <JobCard Img={Img} />
-                                <Divider styles={styles} />
-                                <JobCard Img={Img} />
-                                <Divider styles={styles} />
-                                <JobCard Img={Img} />
-                            </CardContent>
-                            <CardFooter>
-                                SEE ALL JOBS
-                            </CardFooter>
-                        </Card>
-                        )
-                    }
-                </Cards>
-            </main>
-
+        <>
+            {NavBar(isOpen, onClose, onOpen)}
+            <Box p={4} w="100%" >
+                <SimpleGrid w={'100%'} columns={[1, 2,2, 4]} spacing={'3'}>
+                    <CardLead />
+                    <CardLead />
+                    <GearCard />
+                    <GearCard />
+                    <TodaysCard />
+                </SimpleGrid>
+         
+            </Box>
         </>
-    )
+    );
 }
 
-export default Dashboard;
+
+
+
+const TodaysCard = () => {
+    return (
+        <Box display={'flex'} flexDir={'column'} h={'22rem'}  borderRadius={'md'} boxShadow="md" >
+            <Flex justify={'space-between'} px={'3'} py={'5'}>
+                <HStack>
+                    <CalendarIcon />
+                    <Heading size="sm" pr='1'>
+                        Today
+                    </Heading>
+                </HStack>
+                <Text fontSize={'sm'}>Fri Feb 08, 2019</Text>
+            </Flex>
+            <Divider />
+            < TodayCardInfo />
+            < TodayCardInfo />
+            < TodayCardInfo />
+            < TodayCardInfo bg='white' />
+            < TodayCardInfo hasDivider={false} bg='white' />
+        </Box>
+    );
+}
+const TodayCardInfo = ({ hasDivider = true, bg = 'red.50' }) => {
+    return (
+        <Box bg={bg}>
+            <HStack px={'3'} py={'5'} justify={'space-between'} h='12' >
+                <Heading size="sm" pr='1'>
+                    Earned
+                </Heading>
+                <Text fontSize={'sm'} fontWeight="bold">$345</Text>
+            </HStack>
+            {hasDivider && <Divider height={1} />}
+        </Box>
+    )
+}
