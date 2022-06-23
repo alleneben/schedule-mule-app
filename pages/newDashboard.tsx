@@ -19,7 +19,8 @@ import {
 
 import NavBar from '../components/dashboard/nav_bar';
 
-import {CardLead, GearCard } from  '../components/dashboard/cards';
+import { CardInfo, CardLead, GearCard } from '../components/dashboard/cards';
+import { CalendarIcon, SettingsIcon } from '@chakra-ui/icons';
 
 
 
@@ -31,16 +32,19 @@ export default function Dashboard() {
         <>
             {NavBar(isOpen, onClose, onOpen)}
             <Box p={4} w="100%" >
-
-
-
-                <SimpleGrid w={'100%'} columns={[1, 2, 4]} spacing={'3'}>
+                <SimpleGrid w={'100%'} columns={[1, 2,2, 4]} spacing={'3'}>
                     <CardLead />
                     <CardLead />
                     <GearCard />
                     <GearCard />
-                    <CardLead />
-               
+                </SimpleGrid>
+                <SimpleGrid w={'100%'} columns={[1,3,3, 6]} spacing={'3'}>
+                    <TodaysCard />
+                    <TodaysCard />
+                    <TodaysCard />
+                    <TodaysCard />
+                    <TodaysCard />
+                    <TodaysCard />
                 </SimpleGrid>
             </Box>
         </>
@@ -50,3 +54,37 @@ export default function Dashboard() {
 
 
 
+const TodaysCard = () => {
+    return (
+        <Box display={'flex'} flexDir={'column'} h={'22rem'} borderRadius={'md'} boxShadow="md" >
+            <Flex justify={'space-between'} px={'3'} py={'5'}>
+                <HStack>
+                    <CalendarIcon />
+                    <Heading size="sm" pr='1'>
+                        Today
+                    </Heading>
+                </HStack>
+                <Text fontSize={'sm'}>Fri Feb 08, 2019</Text>
+            </Flex>
+            <Divider />
+            < TodayCardInfo />
+            < TodayCardInfo />
+            < TodayCardInfo />
+            < TodayCardInfo bg='white' />
+            < TodayCardInfo hasDivider={false} bg='white' />
+        </Box>
+    );
+}
+const TodayCardInfo = ({ hasDivider = true, bg = 'red.50' }) => {
+    return (
+        <Box bg={bg}>
+            <HStack px={'3'} py={'5'} justify={'space-between'} h='12' >
+                <Heading size="sm" pr='1'>
+                    Earned
+                </Heading>
+                <Text fontSize={'sm'} fontWeight="bold">$345</Text>
+            </HStack>
+            {hasDivider && <Divider height={1} />}
+        </Box>
+    )
+}
