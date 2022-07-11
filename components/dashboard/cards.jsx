@@ -1,23 +1,17 @@
 import {
     Box,
     Flex,
-    useDisclosure,
     Text,
     Heading,
     HStack,
     Divider,
     VStack,
-    Button,
     Tag,
     TagLabel,
-    Center,
     Avatar,
-    SimpleGrid
-
 } from '@chakra-ui/react';
 
 import { CalendarIcon, SettingsIcon } from '@chakra-ui/icons';
-import { AiTwotoneMail } from 'react-icons/ai';
 import { FaDollarSign } from 'react-icons/fa';
 
 export const CardInfo = () => {
