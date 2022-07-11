@@ -1,12 +1,14 @@
 import type { NextPage } from 'next'
-import styles from "../styles/Login.module.scss";
 import { FaUserCircle } from 'react-icons/fa';
-import { InputField } from '../components';
 import {
   useState,
 } from 'react';
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+// Custom Imports
+import { InputField, LoadingSpinner } from '../components';
+import styles from "../styles/Login.module.scss";
+
 
 const Login: NextPage = () => {
   const router = useRouter()
@@ -35,7 +37,10 @@ const Login: NextPage = () => {
             <p>Forgotten Password ?</p>
           </div>
           <div className={styles.cardFooter}>
-            <button className={styles.button} type="submit">LOG IN</button>
+            <button className={styles.button} type="submit">
+              <LoadingSpinner width={50} height={50}/>
+              LOG IN
+            </button>
           </div>
         </form>
       </div>

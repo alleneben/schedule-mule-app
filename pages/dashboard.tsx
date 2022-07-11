@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import {
     Box,
     Flex,
@@ -7,20 +6,14 @@ import {
     Heading,
     HStack,
     Divider,
-    VStack,
-    Button,
-    Tag,
-    TagLabel,
-    Center,
-    Avatar,
     SimpleGrid
 
 } from '@chakra-ui/react';
 
 import NavBar from '../components/dashboard/nav_bar';
 
-import { CardInfo, CardLead, GearCard } from '../components/dashboard/cards';
-import { CalendarIcon, SettingsIcon } from '@chakra-ui/icons';
+import {  CardLead, GearCard } from '../components/dashboard/cards';
+import { CalendarIcon } from '@chakra-ui/icons';
 
 
 
@@ -39,7 +32,6 @@ export default function Dashboard() {
                     <GearCard />
                     <TodaysCard />
                 </SimpleGrid>
-         
             </Box>
         </>
     );
