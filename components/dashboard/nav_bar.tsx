@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import NextLink from 'next/link'
 import {
     Box,
     Flex,
@@ -10,8 +11,8 @@ import {
     useColorModeValue,
     Stack,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
-import { AiFillAppstore, AiFillDashboard, AiFillSchedule } from 'react-icons/ai';
+import { HamburgerIcon, CloseIcon, AddIcon, SettingsIcon } from '@chakra-ui/icons';
+import {  AiFillDashboard, AiFillSchedule } from 'react-icons/ai';
 import { FaRegMoneyBillAlt, FaUserAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion'
 
@@ -19,29 +20,34 @@ const Links = [
     {
         label: 'Dashboard',
         icon: <AiFillDashboard fontSize={'1.4rem'} />,
+        path: '/settings'
     },
     {
         label: 'Schedule',
-        icon: <AiFillSchedule fontSize={'1.4rem'} />
+        icon: <AiFillSchedule fontSize={'1.4rem'} />,
+        path: '/settings'
     },
     {
         label: 'Customer',
-        icon: <FaUserAlt fontSize={'1.4rem'} />
+        icon: <FaUserAlt fontSize={'1.4rem'} />,
+        path: '/settings'
 
-    },
-    {
-
-        label: 'My Apps',
-        icon: <AiFillAppstore fontSize={'1.4rem'} />
     },
     {
         label: 'My Money',
-        icon: <FaRegMoneyBillAlt fontSize={'1.4rem'} />
-    }
+        icon: <FaRegMoneyBillAlt fontSize={'1.4rem'} />,
+        path: '/settings'
+    },
+    {
+
+        label: 'Settings',
+        icon: <SettingsIcon fontSize={'1.4rem'} />,
+        path: '/settings'
+    },
 ];
 
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+const NavLink = ({ children , href}: { children: ReactNode, href: string }) => (
     <Link
         as={motion.div}
         px={2}
@@ -59,9 +65,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
             scale: 1.1,
             borderBottom: '1px solid white',
 
-        }}
-
-        href={'#'}>
+        }}>
         {children}
     </Link>
 );
@@ -82,11 +86,29 @@ function NavBar(isOpen: boolean, onClose: () => void, onOpen: () => void) {
 
                     spacing={4}
                     display={{ base: 'none', md: 'flex' }}>
-                    {Links.map((link) => (
-                        <NavLink key={link.label}>
-                            <Box display={'block'}>  {link.icon}</Box>
-                            {link.label}
-                        </NavLink>
+                    {Links.map((link, key) => (
+                        <NextLink key={`link-${key}`} href={link.path} passHref>
+                            <Link
+                                as={motion.div}
+                                px={2}
+                                py={1}
+                                color={useColorModeValue('white', 'gray.700')}
+                                fontSize="xs"
+                                display={'flex'}
+                                flexDir="column"
+                                alignItems={'center'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                }}
+                                whileHover={{
+                                    scale: 1.1,
+                                    borderBottom: '1px solid white',
+
+                                }}>
+                                <Box display={'block'}>{link.icon}</Box>
+                                {link.label}
+                            </Link>
+                        </NextLink>
                     ))}
                 </HStack>
             </HStack>
@@ -111,9 +133,9 @@ function NavBar(isOpen: boolean, onClose: () => void, onOpen: () => void) {
                 >
                     HCP LOG OUT
                 </Button>
-                <Avatar
+                {/* <Avatar
                     size={'sm'}
-                    src={'../public/employees.png'} />
+                    src={'../public/employees.png'} /> */}
             </Flex>
         </Flex>
 
@@ -121,7 +143,7 @@ function NavBar(isOpen: boolean, onClose: () => void, onOpen: () => void) {
             <Box pb={4} display={{ md: 'none' }}>
                 <Stack as={'nav'} spacing={4}>
                     {Links.map((link) => (
-                        <NavLink key={link.label}>
+                        <NavLink key={link.label} href={link.path}>
                             {link.label}
                         </NavLink>
                     ))}

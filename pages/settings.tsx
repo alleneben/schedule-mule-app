@@ -1,29 +1,28 @@
-import { Container, SimpleGrid, Box, Text, Center, Fade, ScaleFade, Slide } from '@chakra-ui/react';
-import type { NextPage } from 'next'
+import { ReactNode } from 'react';
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router'
+import { Container, SimpleGrid,Text,Slide } from '@chakra-ui/react';
+import { AiFillBank, AiFillCustomerService, AiOutlineBranches } from 'react-icons/ai';
+import { FaUsers } from 'react-icons/fa';
+
+
+
 import SettingsHeader from "../components/SettingsHeader";
-import Image from 'next/image'
-import profilePic from '../public/companyprofile.png'
-import employees from '../public/employees.png';
-import price from '../public/price.png';
-import priceTag from '../public/pricetag.png';
-import message from "../public/message.png";
-import service from "../public/service.png";
-import hour from "../public/hour.png";
-import tag from "../public/tag.png";
-import bill from '../public/bill.png';
-import payout from '../public/payout.png';
-import referrals from '../public/referrals.png';
+
 
 
 // Detail components has all the list detail we are rendring on the screen
 class CompanyDetails {
     title: String;
     label: String;
-    image: any;
-    constructor(title: String, label: String, image: any) {
+    icon: ReactNode;
+    path: String;
+
+    constructor(title: String, label: String, icon: ReactNode, path: String) {
         this.title = title;
         this.label = label;
-        this.image = image;
+        this.icon = icon;
+        this.path = path
     }
 }
 
@@ -31,58 +30,27 @@ class CompanyDetails {
 const data = [
     new CompanyDetails(
         "Company Profile",
-        "Update Information about your company",
-        profilePic,
+        "Information about your company",
+        <AiFillBank size={30}/>,
+        "companuy"
     ),
     new CompanyDetails(
-        "Employees",
-        "Employees roles and permissions",
-        employees,
+        "Users",
+        "Users of the system",
+        <FaUsers size={30}/>,
+        "users"
     ),
     new CompanyDetails(
-        "My price list",
-        "Category, name and descripttion of your services",
-        price,
+        "Customers",
+        "Customers of your company",
+        <AiFillCustomerService size={30}/>,
+        "customers"
     ),
     new CompanyDetails(
-        "House Call app Price",
-        "A common set of flat rate services for online and booking",
-        priceTag,
-    ),
-    new CompanyDetails(
-        "Text messages",
-        "Set up custom numbers and personalize your text",
-        message,
-    ),
-    new CompanyDetails(
-        "Service area",
-        "Geographical area you serve",
-        service,
-    ),
-    new CompanyDetails(
-        "Business Hour",
-        "Hours of operation and time slots",
-        hour,
-    ),
-    new CompanyDetails(
-        "Tags",
-        "Tags you use through out the system",
-        tag,
-    ),
-    new CompanyDetails(
-        "Billing",
-        "HouseCall pro billing plan and monthly charges",
-        bill,
-    ),
-    new CompanyDetails(
-        "Payouts",
-        "Credit card payments you process will deposit to this account",
-        payout,
-    ),
-    new CompanyDetails(
-        "Referrals",
-        "We run on refraals tool",
-        referrals,
+        "Branches",
+        "Branches of your company",
+        <AiOutlineBranches size={30}/>,
+        "branches"
     ),
 
 ]
@@ -91,13 +59,13 @@ const data = [
 // Our main setting screen..
 // Rendering of the list we have  with some special components
 const Settings: NextPage = () => {
-    const listCards = data.map((data) =>
-        <Card key={data.toString()} title={data.title} label={data.label} image={data.image} />
+    const listCards = data.map((data,key) =>
+        <Card key={`settins-card-${key}`} title={data.title} label={data.label} icon={data.icon} path={data.path}/>
     );
     return (
         <Slide direction='right' in={true} style={{ zIndex: 10 }}>
-            <SettingsHeader />
-            <SimpleGrid columns={[1, 3, 4]} spacing={'3'} marginStart={'5'} marginEnd={5}>
+            <SettingsHeader title={"Settings"}/>
+            <SimpleGrid columns={[1, 3, 4]} spacing={'3'} marginStart={'5'} marginEnd={5} marginTop={10}>
                 {listCards}
             </SimpleGrid>
         </Slide>
@@ -112,27 +80,38 @@ export default Settings
 type CardProps = {
     title: any,
     label: any,
-    image: any,
-
+    icon: any,
+    path: any
 }
 
 
 
 // Our card 
-const Card = ({ title, label, image, }: CardProps) => {
+const Card = ({ title, label, icon, path }: CardProps) => {
+    const router = useRouter()
+
+    const navigate = (path: string): void => {
+        router.push(`/containers/${path}`);
+    }
     return (
-        <Container centerContent justifyContent='center' _hover={{ bg: '#ebedf0', borderRadius: 'sm' }} h='52' alignContent="center" alignItems={"center"} alignSelf="center">
-            <Image
-                src={image}
-                alt="Picture of the author"
-                width={130}
-                height={80} />
-            <Text mt='1' fontWeight='semibold' as='h4' textAlign='center'>
-                {title}
-            </Text>
-            <Text as='span' color='gray.600' fontSize='sm' textAlign='center'>
-                {label}
-            </Text>
+        <Container 
+            centerContent 
+            justifyContent='center' 
+            _hover={{ bg: '#ebedf0', borderRadius: 'sm' }} 
+            h='52' 
+            alignContent="center" 
+            alignItems={"center"} 
+            alignSelf="center" 
+            cursor={"pointer"}
+            onClick={() => navigate(path) }
+        > 
+                { icon }
+                <Text mt='1' fontWeight='semibold' as='h4' textAlign='center'>
+                    {title}
+                </Text>
+                <Text as='span' color='gray.600' fontSize='sm' textAlign='center'>
+                    {label}
+                </Text>
         </Container>
     );
 }
