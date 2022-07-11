@@ -12,6 +12,8 @@ import Divider from "./divider/divider";
 import InputField from "./form-controls/inputField";
 import SelectField from "./form-controls/selectField";
 
+import LoadingSpinner from "./loading-spinner/LoadingSpinner";
+
 export {
     Card,
     CardContent,
@@ -25,5 +27,8 @@ export {
 
 
     InputField,
-    SelectField
+    SelectField,
+
+
+    LoadingSpinner,
 }
