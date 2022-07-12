@@ -3,6 +3,11 @@
     border-top: 5px solid #3498db; /* Blue */
     border-radius: 50%;
     animation: spin 2s linear infinite;
+
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    z-index: 99999;
   }
   
   @keyframes spin {
