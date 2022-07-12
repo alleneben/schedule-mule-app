@@ -27,8 +27,8 @@ const AppContainer: NextPage = () => {
     }
     return (
         <Slide direction='right' in={true} style={{ zIndex: 10 }}>
-            <SettingsHeader title= {query.pageId}/>
-            <SimpleGrid columns={[1, 3, 4]} spacing={'3'} marginStart={'5'} marginEnd={5} marginTop={10}>
+            <SettingsHeader title={query.pageId}/>
+            <SimpleGrid columns={[1, 1]} spacing={'3'} marginStart={'5'} marginEnd={5} marginTop={10} >
                 { renderPage(query?.pageId) }
             </SimpleGrid>
         </Slide>
