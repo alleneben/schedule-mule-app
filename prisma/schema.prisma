@@ -17,34 +17,27 @@ model Branch {
   address String
   email   String
   phone   String
-  User    User[]
 }
 
 model Department {
   id   BigInt @id @default(autoincrement())
   name String
-  User User[]
 }
 
 model Role {
   id   BigInt @id @default(autoincrement())
   name String
-  User User[]
 }
 
 model User {
   id           BigInt     @id @default(autoincrement())
   firstname    String
   lastname     String
-  username     String     @unique
   password     String
   email        String     @unique
-  branch       Branch     @relation(fields: [branchId], references: [id])
-  branchId     BigInt
-  department   Department @relation(fields: [departmentId], references: [id])
-  departmentId BigInt
-  role         Role       @relation(fields: [roleId], references: [id])
-  roleId       BigInt
+  branchId     String
+  departmentId String
+  roleId       String
   status       Int        @default(1)
   active       Int        @default(1)
   createdAt    DateTime   @default(now())
