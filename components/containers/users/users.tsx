@@ -19,7 +19,8 @@ import {
  } from '@chakra-ui/react';
 
 import { DataTable, LoadingSpinner } from "../../";
-
+import { prisma } from '../../../lib/prisma';
+import { Prisma } from '@prisma/client';
 
 const initConfig={
     name:'Users',
@@ -44,7 +45,7 @@ const Users: NextPage = () => {
     const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
     const [message, setMessage] = useState<String>('')
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [user, setUser] = useState<UserData>({firstname:'', lastname: '', email:'', password:'', branchId:'', departmentId:'', roleId:''})
+    const [user, setUser] = useState<Prisma.UserUncheckedCreateInput>({firstname:'', lastname: '', email:'', password:'', branchId:'', departmentId:'', roleId:''})
     const [data, setData] = useState([])
     const toast = useToast()
 
