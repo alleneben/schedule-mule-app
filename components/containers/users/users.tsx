@@ -30,16 +30,6 @@ const initConfig={
 }
 
 
-interface UserData {
-    firstname: string
-    lastname: string
-    email: string
-    password: string
-    branchId: string
-    departmentId: string
-    roleId: string
-}
-
 
 const Users: NextPage = () => {
     const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
@@ -56,7 +46,7 @@ const Users: NextPage = () => {
     const fetchData = async () => {
         try {
             setIsSubmitting(true)
-            let response:any = await fetch('http://localhost:3000/api/read')
+            let response:any = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/read`)
             response = await response.json()
             setData(response.data)
             setIsSubmitting(false)
@@ -87,7 +77,7 @@ const Users: NextPage = () => {
         }
         try {
             setIsSubmitting(true)
-            let response = await fetch('http://localhost:3000/api/create', { 
+            let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/create`, { 
                 method: 'POST', 
                 body: JSON.stringify(user), 
                 headers: {
@@ -128,7 +118,7 @@ const Users: NextPage = () => {
         <Container maxW='container.2xl'>
             <Button colorScheme='blue' marginBottom={5} onClick={onOpen}>Create</Button>
             { data ? <DataTable config={initConfig} data={ data } /> : <h2>{ message }</h2> }
-            {/* { isSubmitting && <LoadingSpinner width={80} height={80}/>} */}
+            { isSubmitting && <LoadingSpinner width={80} height={80}/>}
             
             <Modal
                 isOpen={isOpen}
