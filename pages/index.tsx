@@ -38,7 +38,7 @@ const Login: NextPage = () => {
           </div>
           <div className={styles.cardFooter}>
             <button className={styles.button} type="submit">
-              <LoadingSpinner width={50} height={50}/>
+              {/* <LoadingSpinner width={50} height={50}/> */}
               LOG IN
             </button>
           </div>

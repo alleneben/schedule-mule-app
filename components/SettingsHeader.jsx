@@ -75,7 +75,7 @@ const SettingsHeader = ({ title }) => {
                         <Flex align="center">
                             <Link href="/">
                                 <HStack>
-                                    <Text fontSize='xl' color="white">{ title }</Text>
+                                    <Text fontSize='xl' color="white" textTransform={'capitalize'}>{ title }</Text>
                                     {/* <Logo /> */}
                                 </HStack>
                             </Link>

@@ -92,6 +92,7 @@ function NavBar(isOpen: boolean, onClose: () => void, onOpen: () => void) {
                                 as={motion.div}
                                 px={2}
                                 py={1}
+                                color={'white'}
                                 fontSize="xs"
                                 display={'flex'}
                                 flexDir="column"
